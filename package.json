@@ -1,0 +1,19 @@
+{
+  "name": "dogsplaypokemon",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smrubin/dogsplaypokemon.git"
+  },
+  "author": "Sam Rubin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smrubin/dogsplaypokemon/issues"
+  },
+  "homepage": "https://github.com/smrubin/dogsplaypokemon#readme"
+}
