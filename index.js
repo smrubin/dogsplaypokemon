@@ -1,3 +1,4 @@
+const keyHandler = require('./keyHandler.js');
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -12,3 +13,6 @@ app.post('/', (req, res) => {
 });
 
 app.listen(port, () => console.log(`Launching DogsPlayPokemon on port ${port}...`));
+
+keyHandler.sendKey('w');
+
