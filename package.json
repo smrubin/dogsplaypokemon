@@ -2,9 +2,9 @@
   "name": "dogsplaypokemon",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server/index.js",
     "test": "curl -d '{\"key1\":\"value1\", \"key2\":\"value2\"}' -H \"Content-Type: application/json\" -X POST http://localhost:3000/\n"
   },
   "repository": {
