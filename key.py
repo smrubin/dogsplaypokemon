@@ -33,13 +33,4 @@ if __name__ == "__main__":
     win = win32ui.FindWindow(None, 'Pokemon - Red Version (USA, Europe) (SGB Enhanced) - VisualBoyAdvance-M 2.1.3')
     win.SetForegroundWindow()
     win.SetFocus()
-
-    # example commands for now
-    time.sleep(3)
-    press('w')
-    time.sleep(2)
-    press('w')
-    time.sleep(2)
-    press('d')
-
-
+    press(sys.argv[1])

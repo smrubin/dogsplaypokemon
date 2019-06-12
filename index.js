@@ -1,18 +1,15 @@
 const keyHandler = require('./keyHandler.js');
 const express = require('express');
 const app = express();
+app.use(express.json());
 const port = 3000;
 
 app.post('/', (req, res) => {
-
-    const inputs = ['up', 'down', 'left', 'right', 'a', 'b', 'start', 'select'];
-
-    // just return a random element for now
-    const cmd = inputs[Math.floor(Math.random() * inputs.length)];
+    const validInputs = ['w', 's', 'a', 'd', 'z', 'x', 'n', 'm', 'l', 'r'];
+    const cmd = req.body.input;
+    console.log('Executing keypress: ', cmd);
+    keyHandler.sendKey(cmd);
     res.send(cmd);
 });
 
 app.listen(port, () => console.log(`Launching DogsPlayPokemon on port ${port}...`));
-
-keyHandler.sendKey('w');
-
