@@ -1,4 +1,4 @@
-const keyHandler = require('./keyHandler.js');
+const inputHandler = require('./inputHandler.js');
 const express = require('express');
 const app = express();
 app.use(express.json());
@@ -9,7 +9,7 @@ app.post('/', async (req, res) => {
     console.log('Payload: ', JSON.stringify(req.body));
 
     try {
-        const cmd = await keyHandler.sendKey(input);
+        const cmd = await inputHandler.handle(input);
         res.status(200).send(cmd);
     } catch (e) {
         res.status(400).send(`Bad input: ${input}`);

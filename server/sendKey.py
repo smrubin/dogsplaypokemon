@@ -26,7 +26,7 @@ def press(*args):
     '''
     for i in args:
         win32api.keybd_event(keymap[i], 0, 0, 0)
-        time.sleep(.05)
+        time.sleep(keyDelay)
         win32api.keybd_event(keymap[i], 0 , win32con.KEYEVENTF_KEYUP , 0)
 
 if __name__ == "__main__":
