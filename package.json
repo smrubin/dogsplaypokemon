@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "test": "curl -d '{\"key1\":\"value1\", \"key2\":\"value2\"}' -H \"Content-Type: application/json\" -X POST http://localhost:3000/\n"
+    "test": "curl -d '{\"input\":\"a\"}' -H \"Content-Type:application/json\" -X POST http://localhost:3065/\n"
   },
   "repository": {
     "type": "git",
