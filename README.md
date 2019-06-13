@@ -18,4 +18,4 @@ The server is used as an HTTP server that handles incoming requests from the cli
 
 ### Client
 
-The client is used to broadcast sensor event data sent out as HTTP POST requests. This example client runs on a Raspberry Pi 3 with a Sense HAT (https://www.raspberrypi.org/products/sense-hat/).
+The client is used to broadcast sensor event data sent out as HTTP POST requests. This example client runs on a Raspberry Pi 3 with a Sense HAT (https://www.raspberrypi.org/products/sense-hat/). Follow this [guide](https://projects.raspberrypi.org/en/projects/getting-started-with-the-sense-hat/2) for setting up Sense HAT on the Raspberry Pi. See an emulated Sense HAT here: https://trinket.io/sense-hat
