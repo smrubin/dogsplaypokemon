@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "expose": "lt --port 3065",
+    "expose": "lt -s dogsplaypokemon --port 3065",
     "test": "curl -d '{\"input\":\"a\"}' -H \"Content-Type:application/json\" -X POST http://localhost:3065/\n"
   },
   "repository": {
