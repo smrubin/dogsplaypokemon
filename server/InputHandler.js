@@ -99,14 +99,12 @@ class InputHandler {
     getDirectionFromOrientation(orientation) {
         // Get the direction the dog is current facing so we can get the new direction
         const lastDirection = this.getLastDirection();
-        const lastDegrees = this.getDegreesFromDirection(lastDirection);
-        const degreeChange = orientation.yaw;
-        const currentDegrees = (lastDegrees + degreeChange) % 360;
-        const currentDirection = this.getDirectionFromDegress(currentDegrees);
+        const newDegrees = orientation.yaw;
+        const newDirection = this.getDirectionFromDegress(newDegrees);
 
-        // If the dog has a new current direction, emulate that keypress. Otherwise, look at acceleration data to see if it moved without spinning.
-        if (currentDirection !== lastDirection) {
-            return currentDirection;
+        // If the new yaw (direction) is different from the last direction, emulate keypress for current direction.
+        if (newDirection !== lastDirection) {
+            return newDirection;
         }
 
         // If the dog didn't spin or turn to a new direction, do nothing.
