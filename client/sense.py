@@ -25,6 +25,8 @@ def run_it():
         send_things()
         global current_acceleration
         global current_orientation
+        global default_acceleration
+        global default_orientation
         current_acceleration = default_acceleration
         current_orientation = default_orientation
         start_time = time.time()
