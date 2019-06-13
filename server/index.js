@@ -1,4 +1,4 @@
-const InputHandler = require('./InputHandler.js').InputHandler;
+const InputHandler = require('./InputHandler.js');
 const express = require('express');
 const localTunnel = require('localtunnel');
 const app = express();
@@ -6,11 +6,10 @@ app.use(express.json());
 const port = 3065;
 
 app.post('/', async (req, res) => {
-    const input = req.body.input;
     console.log('Payload: ', JSON.stringify(req.body));
 
     try {
-        const cmd = await InputHandler.handle(req.body);
+        const cmd = await InputHandler.getInstance().handle(req.body);
         console.log(`Keypress: ${cmd}`);
         res.status(200).send(cmd);
     } catch (e) {

@@ -1,6 +1,5 @@
 const exec = require('child_process').exec;
-
-const validKeys = ['w', 's', 'a', 'd', 'z', 'x', 'n', 'm']; // See key.py to see mappings to emulator
+const VALID_KEYS = ['w', 's', 'a', 'd', 'z', 'x', 'n', 'm']; // See key.py to see mappings to emulator
 
 class InputHandler {
 
@@ -213,6 +212,16 @@ class InputHandler {
     select() {
         return 'n';
     }
+
+    /** @return InputHandler */
+    static getInstance() {
+        if (!instance) {
+            instance = new this();
+        }
+        return instance;
+    }
 }
 
-exports.InputHandler = (new InputHandler());
+let instance;
+
+module.exports = InputHandler;
