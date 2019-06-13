@@ -1,4 +1,6 @@
+
 import time
+import datetime
 import urllib3
 import json
 from sense_hat import SenseHat
@@ -53,15 +55,18 @@ def sense_acceleration():
 def send_things():
     http = urllib3.PoolManager()
     data = get_request_body()
+    print("Sending at " + datetime.datetime.now())
     response = http.request("POST",
                             "https://dogsplaypokemon.localtunnel.me",
                             body=json.dumps(data).encode("utf-8"),
                             headers={"Content-Type": "application/json"})
+    print("Received at " + datetime.datetime.now())
     code = response.status
     if code == 200 or code == 201:
         print("Success!: " + str(code))
     else:
         print("Fail!: " + str(code))
+
 
 def get_request_body():
     return dict([("orientation", current_orientation), ("acceleration", current_acceleration)])
