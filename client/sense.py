@@ -19,9 +19,9 @@ current_orientation = default_orientation.copy()
 def run_it():
     start_time = time.time()
     while True:
-        sense_things()
         while time.time() - start_time < send_rate_in_seconds:
-            time.sleep(send_rate_in_seconds)
+            sense_things()
+        send_things()
         global current_acceleration
         global current_orientation
         global default_acceleration
