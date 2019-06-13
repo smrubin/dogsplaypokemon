@@ -1,6 +1,7 @@
 const exec = require('child_process').exec;
-const Z_ACCELERATION_THRESHOLD = 0.97; // Determine if acceleration on the z axis actually occurred
+const INITIAL_Z = 0.97;
 const ACCELERATION_THRESHOLD = 0.5; // Determine if an acceleration on an axis actually occurred
+const Z_ACCELERATION_THRESHOLD = INITIAL_Z + ACCELERATION_THRESHOLD; // Determine if acceleration on the z axis actually occurred
 
 class InputHandler {
 
