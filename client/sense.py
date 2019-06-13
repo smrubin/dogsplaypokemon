@@ -1,11 +1,14 @@
+import time
 import urllib3
 import json
 from sense_hat import SenseHat
 
 
 def run_it():
+    start_time = time.time()
     while True:
         send_things(sense_things())
+        time.sleep(1.0 - ((time.time() - start_time) % 1.0))
 
 
 def sense_things():
