@@ -42,14 +42,14 @@ def sense_orientation():
 
 def sense_acceleration():
     a = sense.get_accelerometer_raw()
-    if a["x"] > current_accelerations["x"]:
-        current_accelerations["x"] = a["x"]
+    if a["x"] > current_acceleration["x"]:
+        current_acceleration["x"] = a["x"]
 
-    if a["y"] > current_accelerations["y"]:
-        current_accelerations["y"] = a["y"]
+    if a["y"] > current_acceleration["y"]:
+        current_acceleration["y"] = a["y"]
 
-    if a["z"] > current_accelerations["z"]:
-        current_accelerations["z"] = a["z"]
+    if a["z"] > current_acceleration["z"]:
+        current_acceleration["z"] = a["z"]
 
 
 def send_things():
