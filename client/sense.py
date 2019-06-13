@@ -30,8 +30,7 @@ def run_it():
 
 def sense_things():
     o = sense_orientation()
-    a = sense_acceleration()
-    return data
+    a = sense_acceleration(
 
 
 def sense_orientation():
