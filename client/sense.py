@@ -23,17 +23,20 @@ def run_it():
             sense_things()
             time.sleep(sense_rate_in_seconds)
         send_things()
+        global current_acceleration
+        global current_orientation
         current_acceleration = default_acceleration
         current_orientation = default_orientation
         start_time = time.time()
 
 
 def sense_things():
-    o = sense_orientation()
-    a = sense_acceleration(
+    sense_orientation()
+    sense_acceleration()
 
 
 def sense_orientation():
+    global current_orientation
     current_orientation = sense.get_orientation()
 
 
