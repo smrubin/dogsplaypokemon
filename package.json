@@ -4,8 +4,8 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "expose": "lt -s dogsplaypokemon --port 3065",
+    "start": "pm2 start server/index.js",
+    "kill": "pm2 stop all",
     "test": "curl -d '{\"input\":\"a\"}' -H \"Content-Type:application/json\" -X POST http://localhost:3065/\n"
   },
   "repository": {
