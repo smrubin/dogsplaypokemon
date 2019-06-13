@@ -5,6 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
+    "expose": "lt --port 3065",
     "test": "curl -d '{\"input\":\"a\"}' -H \"Content-Type:application/json\" -X POST http://localhost:3065/\n"
   },
   "repository": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/smrubin/dogsplaypokemon#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "localtunnel": "^1.9.2"
   }
 }
