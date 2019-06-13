@@ -25,9 +25,9 @@ def send_things(data):
                             headers={"Content-Type": "application/json"})
     code = response.status
     if code == 200 or code == 201:
-        print("Success!: " + code)
+        print("Success!: " + str(code))
     else:
-        print("Fail!: " + code)
+        print("Fail!: " + str(code))
 
 
 if __name__ == '__main__':
