@@ -56,6 +56,7 @@ def send_things():
     http = urllib3.PoolManager()
     data = get_request_body()
     print("Sending at " + str(datetime.datetime.now()))
+    print(data)
     response = http.request("POST",
                             "https://dogsplaypokemon.localtunnel.me",
                             body=json.dumps(data).encode("utf-8"),
