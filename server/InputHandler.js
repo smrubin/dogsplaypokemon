@@ -1,4 +1,5 @@
 const exec = require('child_process').exec;
+const Z_ACCELERATION_THRESHOLD = 0.97; // Determine if acceleration on the z axis actually occurred
 const ACCELERATION_THRESHOLD = 0.5; // Determine if an acceleration on an axis actually occurred
 
 class InputHandler {
@@ -124,12 +125,12 @@ class InputHandler {
         const lastDegrees = this.getDegreesFromDirection(lastDirection);
 
         // Movement detected in dog-forward direction
-        if (acceleration.z > ACCELERATION_THRESHOLD) {
+        if (acceleration.z > Z_ACCELERATION_THRESHOLD) {
             return lastDirection;
         }
 
         // Movement detected in dog-backward direction
-        if (Math.abs(acceleration.z) > ACCELERATION_THRESHOLD) {
+        if (Math.abs(acceleration.z) > Z_ACCELERATION_THRESHOLD) {
             const newDegrees = (lastDegrees + 180) % 360;
             const newDirection = this.getDirectionFromDegress(newDegrees);
             return newDirection;
