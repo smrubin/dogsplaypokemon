@@ -33,6 +33,7 @@ def run_it():
 def sense_things():
     sense_orientation()
     sense_acceleration()
+    print(get_request_body())
 
 
 def sense_orientation():
@@ -56,7 +57,6 @@ def send_things():
     http = urllib3.PoolManager()
     data = get_request_body()
     print("Sending at " + str(datetime.datetime.now()))
-    print(data)
     response = http.request("POST",
                             "https://dogsplaypokemon.localtunnel.me",
                             body=json.dumps(data).encode("utf-8"),
