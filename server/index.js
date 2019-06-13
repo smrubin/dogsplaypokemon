@@ -10,25 +10,25 @@ app.post('/', async (req, res) => {
     console.log('Payload: ', JSON.stringify(req.body));
 
     try {
-        const cmd = await InputHandler.handle(input);
+        const cmd = await InputHandler.handle(req.body);
         console.log(`Keypress: ${cmd}`);
         res.status(200).send(cmd);
     } catch (e) {
         console.log(e);
-        res.status(400).send(`Bad input: ${input}`);
+        res.status(400).send(`Bad request: ${req.body}`);
     }
 });
 
-app.listen(port, () => { 
+app.listen(port, () => {
     console.log(`Launching DogsPlayPokemon on port ${port}...`);
-    var tunnel = localTunnel(port, { subdomain: 'dogsplaypokemon '} ,function(err, tunnel) {
+    const tunnel = localTunnel(port, { subdomain: 'dogsplaypokemon '} ,function(err, tunnel) {
         if (err) {}
-    
+
         // the assigned public url for your tunnel
         // i.e. https://abcdefgjhij.localtunnel.me
         console.log(`Tunnelling on ${tunnel.url}`)
     });
-    
+
     tunnel.on('close', function() {
         // tunnels are closed
         app.close();
