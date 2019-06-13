@@ -1,5 +1,5 @@
 const exec = require('child_process').exec;
-const VALID_KEYS = ['w', 's', 'a', 'd', 'z', 'x', 'n', 'm']; // See key.py to see mappings to emulator
+const ACCELERATION_THRESHOLD = 0.5; // Determine if an acceleration on an axis actually occurred
 
 class InputHandler {
 
@@ -49,17 +49,21 @@ class InputHandler {
             return directionFromOrientation;
         }
 
-        // If the dog accelerated, perform keypress in direction of acceleration (based on last known direction
+        // If the dog accelerated on its main axis (forwards or backwards), perform keypress in direction of acceleration (based on last known direction)
         const directionFromAcceleration = this.getDirectionFromAcceleration(acceleration);
         if (directionFromAcceleration) {
-            this.setLastDirection(directionFromAcceleration)
+            this.setLastDirection(directionFromAcceleration);
             return directionFromAcceleration;
         }
 
-        // If the dog didn't spin or move, just execute an A press.
-        return this.a();
+        // If the dog accelerated on its secondary or tertiary axis (side stepping or laying down), execute a B-button press.
+        const buttonFromAcceleration = this.getButtonFromAcceleration(acceleration);
+        if (buttonFromAcceleration) {
+            return buttonFromAcceleration;
+        }
 
-        // TODO - Implement B button press.
+        // If the dog didn't spin or move in any direction, just execute an A press.
+        return this.a();
     }
 
     /**
@@ -69,7 +73,7 @@ class InputHandler {
      * @param orientation.pitch The pitch
      * @param orientation.yaw The yaw
      * @param orientation.roll The roll
-     * @returns {string | null} key One of the
+     * @returns {string | null} key One of the menu option buttons (start or select)
      */
     getRoll(orientation) {
         const roll = orientation.roll;
@@ -90,11 +94,11 @@ class InputHandler {
      * @param orientation.pitch The pitch
      * @param orientation.yaw The yaw
      * @param orientation.roll The roll
-     * @returns {string | null} key One of the
+     * @returns {string | null} key One of the directional keypresses
      */
     getDirectionFromOrientation(orientation) {
         // Get the direction the dog is current facing so we can get the new direction
-        const lastDirection = this.getLastDirection(); // TODO - Need to make sure we only write to this global var when a keypress was directional.
+        const lastDirection = this.getLastDirection();
         const lastDegrees = this.getDegreesFromDirection(lastDirection);
         const degreeChange = orientation.yaw;
         const currentDegrees = (lastDegrees + degreeChange) % 360;
@@ -110,30 +114,52 @@ class InputHandler {
     }
 
     /**
-     * If the dog turns or spins to a new direction, get the new direction that the dog is facing.
+     * If the dog accelerates on its main axis, the z-axis, continue to move in last known direction or switch direction.
      * @param acceleration
      * @param acceleration.x The x-axis acceleration
      * @param acceleration.y The y-axis acceleration
      * @param acceleration.z The z-axis acceleration
-     * @returns {string} key One of the
+     * @returns {string | null} key One of the directional keypresses
      */
     getDirectionFromAcceleration(acceleration) {
         const lastDirection = this.getLastDirection();
         const lastDegrees = this.getDegreesFromDirection(lastDirection);
 
-        if (acceleration.y > 3) {
+        // Movement detected in dog-forward direction
+        if (acceleration.z > ACCELERATION_THRESHOLD) {
             return lastDirection;
         }
 
-        if (acceleration.y < -3) {
+        // Movement detected in dog-backward direction
+        if (Math.abs(acceleration.z) > ACCELERATION_THRESHOLD) {
             const newDegrees = (lastDegrees + 180) % 360;
             const newDirection = this.getDirectionFromDegress(newDegrees);
             return newDirection;
         }
 
-        // If no accleration, do nothing.
+        // If no acceleration, do nothing.
         return null;
     }
+
+    /**
+     * If the dog accelerates on a non-main axis, X or Y axis, then execute a B-button press. This should be uncommon and be equivalent to a dog side-steppng or laying down.
+     * @param acceleration
+     * @param acceleration.x The x-axis acceleration
+     * @param acceleration.y The y-axis acceleration
+     * @param acceleration.z The z-axis acceleration
+     * @returns {string | null} key One of the action button presses, current B-button
+     */
+    getButtonFromAcceleration(acceleration) {
+        const xAccel = acceleration.x;
+        const yAccel = acceleration.y;
+        if (Math.abs(xAccel) > ACCELERATION_THRESHOLD || Math.abs(yAccel) > ACCELERATION_THRESHOLD) {
+            return this.b();
+        }
+
+        // If no significant acceleration detected, do nothing.
+        return null;
+    }
+
 
     /**
      * Gets the arrow key direction from a yaw degrees
