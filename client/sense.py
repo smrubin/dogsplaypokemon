@@ -17,7 +17,7 @@ current_orientation = default_orientation
 def run_it():
     start_time = time.time()
     while True:
-        while time.time - start_time < send_rate_in_seconds:
+        while time.time() - start_time < send_rate_in_seconds:
             sense_things()
             time.sleep(sense_rate_in_seconds)
         send_things()
