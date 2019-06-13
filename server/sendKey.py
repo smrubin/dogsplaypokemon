@@ -13,7 +13,7 @@ keymap = {
     "d": ord("D"), # right d-pad
     "z": ord("Z"), # A button
     "x": ord("X"), # B button
-    "M": ord("M"), # start
+    "m": ord("M"), # start
     "n": ord("N"), # select
     "l": ord("L"), # L bumper (only for GBA)
     "p": ord("P") # R bumper (only for GBA)

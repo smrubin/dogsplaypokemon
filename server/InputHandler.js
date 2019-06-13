@@ -11,7 +11,7 @@ class InputHandler {
     }
 
     async sendKey(key) {
-        await exec('python sendKey.py' + ' ' + key);
+        await exec('python server/sendKey.py' + ' ' + key);
     }
 
     // TODO - Map the sensor input data to one of the valid keys
