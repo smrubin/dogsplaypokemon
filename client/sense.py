@@ -12,8 +12,8 @@ sense = SenseHat()
 default_acceleration = dict([("x", 0.0), ("y", 0.0), ("z", 0.0)])
 default_orientation = dict([("pitch", 0.0), ("roll", 0.0), ("yaw", 0.0)])
 
-current_acceleration = default_acceleration
-current_orientation = default_orientation
+current_acceleration = default_acceleration.copy()
+current_orientation = default_orientation.copy()
 
 
 def run_it():
@@ -27,8 +27,8 @@ def run_it():
         global current_orientation
         global default_acceleration
         global default_orientation
-        current_acceleration = default_acceleration
-        current_orientation = default_orientation
+        current_acceleration = default_acceleration.copy()
+        current_orientation = default_orientation.copy()
         start_time = time.time()
 
 
@@ -45,6 +45,7 @@ def sense_orientation():
 
 def sense_acceleration():
     a = sense.get_accelerometer_raw()
+    global current_acceleration
     if a["x"] > current_acceleration["x"]:
         current_acceleration["x"] = a["x"]
 
