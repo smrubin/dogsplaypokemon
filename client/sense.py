@@ -6,8 +6,8 @@ import json
 from sense_hat import SenseHat
 
 
-send_rate_in_seconds = 1.0
-sense_rate_in_seconds = 0.1
+send_rate_in_seconds = 0.5
+# sense_rate_in_seconds = 0.1
 sense = SenseHat()
 default_acceleration = dict([("x", 0.0), ("y", 0.0), ("z", 0.0)])
 default_orientation = dict([("pitch", 0.0), ("roll", 0.0), ("yaw", 0.0)])
@@ -19,10 +19,9 @@ current_orientation = default_orientation.copy()
 def run_it():
     start_time = time.time()
     while True:
+        sense_things()
         while time.time() - start_time < send_rate_in_seconds:
-            sense_things()
-            time.sleep(sense_rate_in_seconds)
-        send_things()
+            time.sleep(send_rate_in_seconds)
         global current_acceleration
         global current_orientation
         global default_acceleration
