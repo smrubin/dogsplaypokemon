@@ -6,8 +6,8 @@ import json
 from sense_hat import SenseHat
 
 
-send_rate_in_seconds = 1.0
-sense_rate_in_seconds = 0.1
+send_rate_in_seconds = 0.5
+# sense_rate_in_seconds = 0.1
 sense = SenseHat()
 default_acceleration = dict([("x", 0.0), ("y", 0.0), ("z", 0.0)])
 default_orientation = dict([("pitch", 0.0), ("roll", 0.0), ("yaw", 0.0)])
@@ -21,7 +21,6 @@ def run_it():
     while True:
         while time.time() - start_time < send_rate_in_seconds:
             sense_things()
-            time.sleep(sense_rate_in_seconds)
         send_things()
         global current_acceleration
         global current_orientation
@@ -61,7 +60,7 @@ def send_things():
     data = get_request_body()
     print("Sending at " + str(datetime.datetime.now()))
     response = http.request("POST",
-                            "https://dogsplaypokemon.localtunnel.me",
+                            "http://10.100.21.251",
                             body=json.dumps(data).encode("utf-8"),
                             headers={"Content-Type": "application/json"})
     print("Received at " + str(datetime.datetime.now()))
