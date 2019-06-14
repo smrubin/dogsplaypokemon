@@ -79,11 +79,11 @@ class InputHandler {
      */
     getRoll(orientation) {
         const roll = orientation.roll;
-        if (roll >= 90 && roll < 180) {
+        if (roll >= 120 && roll < 180) {
             return this.start();
         }
 
-        if (roll >= 180 && roll < 270) {
+        if (roll >= 180 && roll < 240) {
             return this.select();
         }
 
