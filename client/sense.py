@@ -59,17 +59,21 @@ def send_things():
     http = urllib3.PoolManager()
     data = get_request_body()
     print("Sending at " + str(datetime.datetime.now()))
-    response = http.request("POST",
+    try:
+        response = http.request("POST",
                             "https://dogsplaypokemon.localtunnel.me",
                             retries=8,
                             body=json.dumps(data).encode("utf-8"),
                             headers={"Content-Type": "application/json"})
-    print("Received at " + str(datetime.datetime.now()))
-    code = response.status
-    if code == 200 or code == 201:
-        print("Success!: " + str(code))
-    else:
-        print("Fail!: " + str(code))
+        print("Received at " + str(datetime.datetime.now()))
+        code = response.status
+        if code == 200 or code == 201:
+            print("Success!: " + str(code))
+        else:
+            print("Fail!: " + str(code))
+    except urllib3.exceptions.HTTPError:
+        print("HTTPError received, moving on...")
+
 
 
 def get_request_body():
