@@ -1,4 +1,4 @@
-
+ 
 import time
 import datetime
 import urllib3
@@ -61,6 +61,7 @@ def send_things():
     print("Sending at " + str(datetime.datetime.now()))
     response = http.request("POST",
                             "https://dogsplaypokemon.localtunnel.me",
+                            retries=8,
                             body=json.dumps(data).encode("utf-8"),
                             headers={"Content-Type": "application/json"})
     print("Received at " + str(datetime.datetime.now()))
