@@ -60,7 +60,7 @@ def send_things():
     data = get_request_body()
     print("Sending at " + str(datetime.datetime.now()))
     response = http.request("POST",
-                            "https://dogsplaypokemon.localtunnel.me",
+                            "http://10.100.21.251",
                             body=json.dumps(data).encode("utf-8"),
                             headers={"Content-Type": "application/json"})
     print("Received at " + str(datetime.datetime.now()))
