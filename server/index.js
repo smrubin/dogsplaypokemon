@@ -3,7 +3,7 @@ const express = require('express');
 const localTunnel = require('localtunnel');
 const app = express();
 app.use(express.json());
-const port = 3065;
+const port = 80;
 
 app.post('/', async (req, res) => {
     console.log('Payload: ', JSON.stringify(req.body));
