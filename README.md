@@ -1,6 +1,8 @@
 # DogsPlayPokemon
 
-An experiment to determine if dogs can beat Pokemon Red. The live-stream can be viewed on Twitch: https://www.twitch.tv/smrubin
+The official repo for the [blog post](https://engineering.videoblocks.com/playing-pokemon-with-office-dogs-and-a-raspberry-pi-49bf16811884).
+
+An experiment to determine if dogs can beat Pokemon Red. The live-stream can be viewed on Twitch: https://www.twitch.tv/smrubin.
 
 <img src="./img/DogsPlayPokemon-Architecture.png" alt="DogsPlayPokemon Architecture" width="600"/>
 
