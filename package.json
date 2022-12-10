@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/smrubin/dogsplaypokemon#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "localtunnel": "^1.9.2"
   }
 }
